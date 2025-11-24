@@ -57,3 +57,4 @@ class Ship:
         ship.coordinates = [tuple(c) for c in data.get("coordinates", [])]
         ship.hits = set(tuple(h) for h in data.get("hits", []))
         return ship
+
