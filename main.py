@@ -111,7 +111,6 @@ class BattleshipGUI:
             return
 
         try:
-            # gm.load_state already populated gm.boards and gm.current
             messagebox.showinfo("Load", "Game loaded.")
             self.show_turn_screen()
         except Exception as e:
