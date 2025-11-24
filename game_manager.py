@@ -51,7 +51,6 @@ class GameManager:
 
     # ------- Manual placement -------
     def place_ship_manual(self, player: int, ship_name: str, start: Tuple[int,int], end: Tuple[int,int]) -> bool:
-        """Attempt to place ship by name for player. Returns True if placed."""
         # find out which ship
         for name, size, sym in SHIP_TYPES:
             if name == ship_name:
@@ -61,13 +60,10 @@ class GameManager:
 
     # ------- Attack logic -------
     def register_attack(self, defender: int, x: int, y: int) -> str:
-        """Registers attack on defender's board. Returns 'repeat', 'miss', 'hit' or 'sunk:Name:Sym'"""
         board = self.boards[defender]
         res = board.register_attack(x, y)
-        # board.register_attack assumed to return same strings; if not, normalize:
         if isinstance(res, str):
             return res
-        # if board.register_attack returns None or bool, attempt to map:
         if res is True:
             # hit
             # check if any ship is sunk at that position
@@ -78,7 +74,6 @@ class GameManager:
         elif res is False:
             return "miss"
         else:
-            # fallback
             return str(res)
 
     def all_sunk(self, player: int) -> bool:
